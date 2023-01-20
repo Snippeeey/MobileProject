@@ -9,18 +9,24 @@ public class GroundController : MonoBehaviour
     private float newRotZ;
     
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        newRotZ = transform.rotation.z;
+        if(animated)
+        {
+            newRotZ = transform.rotation.eulerAngles.z;
+        }
+        
+       
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, newRotZ);
+      transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, newRotZ);
     }
     IEnumerator Rotate()
     {
+       
        
         animated = false; 
         yield return new WaitForSeconds(timeToStart);
@@ -35,7 +41,7 @@ public class GroundController : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.GetComponent<RiderController>() && animated)
+        if(collision.gameObject.GetComponent<RiderController>() == true && animated)
         {
             StartCoroutine(Rotate());
         }

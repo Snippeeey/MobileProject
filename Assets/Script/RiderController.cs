@@ -9,7 +9,7 @@ public class RiderController : MonoBehaviour
     public bool isGrouded;
     [HideInInspector]
     public bool alive,flip;
-    public Collider2D backWheel, frontWheel;
+    public Wheels_Controller backWheel, frontWheel;
     private bool backWheelTouch, frontWheeltouch;
 
 
@@ -95,7 +95,7 @@ public class RiderController : MonoBehaviour
     IEnumerator PointFlipCalculator()
     {
         yield return new WaitForSeconds(0.1f);
-        if(backWheelTouch && frontWheeltouch)
+        if(backWheel.isGrounded && frontWheel.isGrounded )
         {
             scoreCount *= 2; 
         }
@@ -116,21 +116,27 @@ public class RiderController : MonoBehaviour
     {
         myAnimator.SetBool("Finito", true);
     }
-    private void OnCollisionEnter2D()
+    public void Wheelstouchground()
     {
+
+
         isGrouded = true;
-        
+        if(backWheel.isGrounded && frontWheel.isGrounded == false || backWheel.isGrounded == false && frontWheel.isGrounded )
+        {
+            StartCoroutine(PointFlipCalculator());
+        }
+       
     }
 
     private void OnAnimatorIK(int layerIndex)
     {
        
     }
-    private void OnCollisionStay2D()
+    public void WheelsStayOnGround()
     {
         isGrouded = true;
     }
-    private void OnCollisionExit2D()
+    public void WheelsLeaveTheGround()
     {
         isGrouded = false; 
         

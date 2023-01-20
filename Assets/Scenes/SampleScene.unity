@@ -247,7 +247,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 319572ce5bfcd2c4e9aec637d7d9f6b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forceGiven: 1
+  forceGiven: 0.5
+  boostTime: 1
 --- !u!850595691 &131295961
 LightingSettings:
   m_ObjectHideFlags: 0
@@ -4584,8 +4585,6 @@ GameObject:
   - component: {fileID: 687199612}
   - component: {fileID: 687199613}
   - component: {fileID: 687199614}
-  - component: {fileID: 687199616}
-  - component: {fileID: 687199615}
   m_Layer: 0
   m_Name: -Player-
   m_TagString: PlayerBike
@@ -4658,6 +4657,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 289405737}
+  - {fileID: 1466196052}
+  - {fileID: 1841802857}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4698,8 +4699,8 @@ MonoBehaviour:
   isGrouded: 0
   alive: 0
   flip: 0
-  backWheel: {fileID: 0}
-  frontWheel: {fileID: 0}
+  backWheel: {fileID: 1841802859}
+  frontWheel: {fileID: 1466196054}
   score: 0
   scoreCount: 0
   zmin: 320
@@ -4754,6 +4755,7 @@ PolygonCollider2D:
       - {x: -0.45249224, y: -0.26818013}
       - {x: -0.3773627, y: -0.26063874}
       - {x: -0.26071873, y: -0.1631717}
+      - {x: -0.11142063, y: -0.16660523}
       - {x: 0.33324212, y: -0.17683119}
 --- !u!95 &687199614
 Animator:
@@ -4775,38 +4777,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!58 &687199615
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 687199607}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.46, y: -0.124530196}
-  serializedVersion: 2
-  m_Radius: 0.17681485
---- !u!58 &687199616
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 687199607}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.51563996, y: -0.124530196}
-  serializedVersion: 2
-  m_Radius: 0.17681485
 --- !u!43 &1408551851
 Mesh:
   m_ObjectHideFlags: 0
@@ -4971,6 +4941,132 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &1466196051
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1466196052}
+  - component: {fileID: 1466196053}
+  - component: {fileID: 1466196054}
+  m_Layer: 0
+  m_Name: FrontWheel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1466196052
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1466196051}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 687199610}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &1466196053
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1466196051}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.51563996, y: -0.124530196}
+  serializedVersion: 2
+  m_Radius: 0.17681485
+--- !u!114 &1466196054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1466196051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ba4164e6be0a02498557db2a0033f2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isGrounded: 0
+  otherWC: {fileID: 1841802859}
+--- !u!1 &1841802856
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1841802857}
+  - component: {fileID: 1841802858}
+  - component: {fileID: 1841802859}
+  m_Layer: 0
+  m_Name: Backwheel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1841802857
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1841802856}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.986, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 687199610}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &1841802858
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1841802856}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.51563996, y: -0.124530196}
+  serializedVersion: 2
+  m_Radius: 0.17681485
+--- !u!114 &1841802859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1841802856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ba4164e6be0a02498557db2a0033f2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isGrounded: 0
+  otherWC: {fileID: 1466196054}
 --- !u!1 &1980000929
 GameObject:
   m_ObjectHideFlags: 0
@@ -5753,6 +5849,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   kill: 0
   animated: 1
-  timeToStart: 0.1
+  timeToStart: 0.5
   rotationTime: 2
   rotationValue: 40

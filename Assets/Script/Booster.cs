@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Booster : MonoBehaviour
 {
-    public float forceGiven;
+    public float forceGiven,boostTime;
     private bool boost;
     private Rigidbody2D rg2d; 
     // Start is called before the first frame update
@@ -32,7 +32,7 @@ public class Booster : MonoBehaviour
     IEnumerator ImpulseTimer()
     {
         boost = true; 
-        yield return new WaitForSeconds(0.8f);
+        yield return new WaitForSeconds(boostTime);
         boost = false; 
         
     }
