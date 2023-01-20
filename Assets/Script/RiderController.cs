@@ -8,12 +8,14 @@ public class RiderController : MonoBehaviour
     public bool moved;
     public bool isGrouded;
     [HideInInspector]
-    public bool alive; 
+    public bool alive,flip;
+    public Collider2D backWheel, frontWheel;
+    private bool backWheelTouch, frontWheeltouch;
 
 
-
-
-
+    private int zminreset, zmaxreset;
+    public int score,scoreCount;
+    public float zmin, zmax;
     public float speed;
     public float rotationSpeed; 
     private Rigidbody2D rg2d;
@@ -21,6 +23,8 @@ public class RiderController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        zminreset = 3;
+        zmaxreset = 5;
         myAnimator = GetComponent<Animator>();
         rg2d = GetComponent<Rigidbody2D>();
     }
@@ -33,6 +37,7 @@ public class RiderController : MonoBehaviour
     private void FixedUpdate()
     {
         MoveRider();
+        CountFlips();
     }
 
 
@@ -72,6 +77,35 @@ public class RiderController : MonoBehaviour
         
 
     }
+    private void CountFlips()
+    {
+        if (!isGrouded &&  !flip && (transform.rotation.eulerAngles.z > zmin) && (transform.rotation.eulerAngles.z < zmax)  )
+        {
+           Debug.Log("dhjdb");
+            scoreCount++;
+            flip = true; 
+            
+        }
+        if ( (transform.rotation.eulerAngles.z > zminreset) && (transform.rotation.eulerAngles.z < zmaxreset))
+        {
+            flip = false; 
+        }
+
+    }
+    IEnumerator PointFlipCalculator()
+    {
+        yield return new WaitForSeconds(0.1f);
+        if(backWheelTouch && frontWheeltouch)
+        {
+            scoreCount *= 2; 
+        }
+        score += scoreCount;
+        scoreCount = 0;
+        flip = false;
+
+    }
+    
+
     public void Death()
     {
         Debug.Log("mort");
@@ -84,7 +118,13 @@ public class RiderController : MonoBehaviour
     }
     private void OnCollisionEnter2D()
     {
-        isGrouded = true; 
+        isGrouded = true;
+        
+    }
+
+    private void OnAnimatorIK(int layerIndex)
+    {
+       
     }
     private void OnCollisionStay2D()
     {
@@ -95,4 +135,5 @@ public class RiderController : MonoBehaviour
         isGrouded = false; 
         
     }
+
 }
