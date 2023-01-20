@@ -18,7 +18,7 @@ public class Booster : MonoBehaviour
     {
         if(boost)
         {
-            rg2d.AddForce(rg2d.transform.forward * forceGiven, ForceMode2D.Impulse);
+            rg2d.AddForce(rg2d.transform.right * forceGiven *Time.fixedDeltaTime *100f, ForceMode2D.Impulse);
             //rg2d.gameObject.SetActive(false)
         }
     }

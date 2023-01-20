@@ -247,7 +247,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 319572ce5bfcd2c4e9aec637d7d9f6b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forceGiven: 100
+  forceGiven: 1
 --- !u!850595691 &131295961
 LightingSettings:
   m_ObjectHideFlags: 0
@@ -5317,6 +5317,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   kill: 1
+  animated: 0
+  timeToStart: 0
+  rotationTime: 0
+  rotationValue: 0
 --- !u!1 &2002861745
 GameObject:
   m_ObjectHideFlags: 0
@@ -5748,3 +5752,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   kill: 0
+  animated: 1
+  timeToStart: 0.1
+  rotationTime: 2
+  rotationValue: 40
