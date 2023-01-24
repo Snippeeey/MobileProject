@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class RiderController : MonoBehaviour
@@ -17,7 +18,8 @@ public class RiderController : MonoBehaviour
     public int score,scoreCount;
     public float zmin, zmax;
     public float speed;
-    public float rotationSpeed; 
+    public float rotationSpeed;
+    public TextMeshProUGUI uiScore; 
     private Rigidbody2D rg2d;
     private Animator myAnimator;
     // Start is called before the first frame update
@@ -51,12 +53,12 @@ public class RiderController : MonoBehaviour
 
     private void movementDetector()             // input a changer pour le mobile
     {
-        if(Input.GetButtonDown("Fire1"))
+        if(Input.touches[0].phase == TouchPhase.Began)
         {
             moved = true; 
         }
 
-        if (Input.GetButtonUp("Fire1"))
+        if (Input.touches[0].phase == TouchPhase.Ended)
         {
             moved = false;
         }
@@ -94,12 +96,14 @@ public class RiderController : MonoBehaviour
     }
     IEnumerator PointFlipCalculator()
     {
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.05f);
         if(backWheel.isGrounded && frontWheel.isGrounded )
         {
             scoreCount *= 2; 
         }
+
         score += scoreCount;
+        uiScore.text = ""  + score.ToString();
         scoreCount = 0;
         flip = false;
 
