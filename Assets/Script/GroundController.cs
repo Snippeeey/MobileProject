@@ -13,7 +13,7 @@ public class GroundController : MonoBehaviour
     {
        
         
-        newRotZ = transform.rotation.eulerAngles.z;
+        newRotZ = transform.localEulerAngles.z;
         
         
        
@@ -37,8 +37,9 @@ public class GroundController : MonoBehaviour
         float timeElapsed = 0;
         while (timeElapsed < rotationTime)
         {
-            newRotZ = Mathf.Lerp(transform.rotation.z, transform.rotation.z + rotationValue, timeElapsed / rotationTime);
-            timeElapsed += Time.fixedDeltaTime;
+            newRotZ = Mathf.Lerp(transform.localEulerAngles.z, transform.localEulerAngles.z + 1, timeElapsed / rotationTime);
+            //Debug.Log(transform.localEulerAngles);
+            timeElapsed += Time.deltaTime;
             yield return null;
         }
             

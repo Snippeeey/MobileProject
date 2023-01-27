@@ -23,6 +23,7 @@ public class Wheels_Controller : MonoBehaviour
     {
         isGrounded = true;
         rd.Wheelstouchground();
+        
     }
     private void OnCollisionStay2D()
     {
@@ -37,5 +38,14 @@ public class Wheels_Controller : MonoBehaviour
             rd.WheelsLeaveTheGround();
         }
 
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.GetComponent<FinishLine>())
+        {
+            GameManager.Instance.temporaryScores = rd.score;
+            GameManager.Instance.Finish();
+            Debug.Log("leScoremarche");
+        }
     }
 }

@@ -6,6 +6,12 @@ TagManager:
   tags:
   - PlayerBike
   - Ground
+  - Car
+  - RiderWheels
+  - Panel
+  - FinishLine
+  - GameManager
+  - UI
   layers:
   - Default
   - TransparentFX
@@ -13,8 +19,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - Car
+  - Weels
   - 
   - 
   - 

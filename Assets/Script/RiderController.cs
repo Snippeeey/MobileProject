@@ -53,12 +53,12 @@ public class RiderController : MonoBehaviour
 
     private void movementDetector()             // input a changer pour le mobile
     {
-        if(Input.touches[0].phase == TouchPhase.Began)
+        if(Input.touches[0].phase == TouchPhase.Began )
         {
             moved = true; 
         }
 
-        if (Input.touches[0].phase == TouchPhase.Ended)
+        if (Input.touches[0].phase == TouchPhase.Ended )
         {
             moved = false;
         }
@@ -83,7 +83,7 @@ public class RiderController : MonoBehaviour
     {
         if (!isGrouded &&  !flip && (transform.rotation.eulerAngles.z > zmin) && (transform.rotation.eulerAngles.z < zmax)  )
         {
-           Debug.Log("dhjdb");
+          
             scoreCount++;
             flip = true; 
             
@@ -101,7 +101,7 @@ public class RiderController : MonoBehaviour
         {
             scoreCount *= 2; 
         }
-
+        new WaitForSeconds(0.8f);
         score += scoreCount;
         uiScore.text = ""  + score.ToString();
         scoreCount = 0;
@@ -112,7 +112,7 @@ public class RiderController : MonoBehaviour
 
     public void Death()
     {
-        Debug.Log("mort");
+        
         alive = true;
         myAnimator.SetBool("Death",true); 
     }
@@ -144,6 +144,10 @@ public class RiderController : MonoBehaviour
     {
         isGrouded = false; 
         
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+       
     }
 
 }
