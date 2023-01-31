@@ -114,7 +114,8 @@ public class RiderController : MonoBehaviour
     {
         
         alive = true;
-        myAnimator.SetBool("Death",true); 
+        myAnimator.SetBool("Death",true);
+        StartCoroutine(WaitDeath());
     }
     public void EndDeath()
     {
@@ -148,6 +149,11 @@ public class RiderController : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
        
+    }
+    IEnumerator WaitDeath()
+    {
+        yield return new WaitForSeconds(1f);
+        GameManager.Instance.RestartAfterDeath();
     }
 
 }

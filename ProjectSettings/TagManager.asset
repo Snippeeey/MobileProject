@@ -12,6 +12,8 @@ TagManager:
   - FinishLine
   - GameManager
   - UI
+  - TimerTag
+  - ScoreTag
   layers:
   - Default
   - TransparentFX
