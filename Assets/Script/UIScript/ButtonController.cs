@@ -10,7 +10,7 @@ public class ButtonController : MonoBehaviour
     public bool finish;
 
     [Header("BestScore")]
-    public int highScore;
+    public int highScore = 0 ;
     public int levelindex , Targetedloop, Score;
     public float Timer; 
     // Start is called before the first frame update
@@ -68,6 +68,7 @@ public class ButtonController : MonoBehaviour
             }
             Star[i-1].SetActive(true);
         }
+        yield return null;
     }
 
 }

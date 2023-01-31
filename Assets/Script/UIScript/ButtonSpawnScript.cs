@@ -20,18 +20,23 @@ public class ButtonSpawnScript : MonoBehaviour
     {
         for (int i = 0; i < button.Count; i++)
         {
-            
-            button[i].SetActive(false);
             button[i].GetComponent<ButtonController>().StarSetActiveFalse();
+            button[i].SetActive(false);
+            
         }
+
     }
     public IEnumerator ButtonSpawn()
     {
+        SetAllbuttonFalse();
         for (int i = 0; i < button.Count; i++)
         {
            yield return new WaitForSeconds(0.2f);
            button[i].SetActive(true);
            StartCoroutine(button[i].GetComponent<ButtonController>().StarSpawn());
         }
+        
+        yield return null;
+       
     }
 }

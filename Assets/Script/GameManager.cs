@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI scoreTxT;
 
     public int levelchoosen;
-    public bool levelUi;
+    public bool levelUi , inMenu ;
     public GameObject panelMain, panelLevel, canvas, buttonGroup;
 
     public ButtonController buttonLiedToLevel;
@@ -57,15 +57,17 @@ public class GameManager : MonoBehaviour
     private void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
-
+      
     }
     private void OnDisable()
     {
-        SceneManager.sceneLoaded -= OnSceneLoaded; 
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+        
     }
     // Start is called before the first frame update
     void Awake()
     {
+        
         bps = FindObjectOfType<ButtonSpawnScript>();
         panelMain.GetComponent<CanvasGroup>().alpha = 1;
         panelMain.GetComponent<CanvasGroup>().interactable = true;
@@ -74,6 +76,7 @@ public class GameManager : MonoBehaviour
         panelLevel.GetComponent<CanvasGroup>().alpha = 0;
         panelLevel.GetComponent<CanvasGroup>().interactable = false;
         panelLevel.GetComponent<CanvasGroup>().blocksRaycasts = false;
+        inMenu = true; 
     }
 
     // Update is called once per frame
@@ -167,14 +170,16 @@ public class GameManager : MonoBehaviour
     public void LoadLevel( ButtonController button)
     {
        
+        
         buttonLiedToLevel = button;
         levelchoosen = button.levelindex;
         targetedTimer = button.Timer; 
         timeLeft = button.Timer;
-        targetedScore = button.Targetedloop; 
-        SceneManager.LoadScene(levelchoosen, LoadSceneMode.Single);
-        canvas.SetActive(false);
+        targetedScore = button.Targetedloop;
         bps.SetAllbuttonFalse();
+        SceneManager.LoadScene(levelchoosen, LoadSceneMode.Single);
+        inMenu = false;        
+        canvas.SetActive(false);       
         loopAdded = false;
         timerAdded = false; 
        
@@ -234,17 +239,23 @@ public class GameManager : MonoBehaviour
     }
     public void PanelSwitch(GameObject panelToLoad)
     {
-        if (panelMain.GetComponent<CanvasGroup>().alpha == 1 )
+       
+      
+        if (panelMain.GetComponent<CanvasGroup>().alpha == 1)
         {
             /*panelMain.GetComponent<Animator>().SetTrigger("exit");
             panelToLoad.GetComponent<Animator>().SetTrigger("Enter");*/
             panelMain.GetComponent<CanvasGroup>().blocksRaycasts = false;
-            panelMain.GetComponent<CanvasGroup>().alpha = 0 ;
+            panelMain.GetComponent<CanvasGroup>().alpha = 0;
             panelMain.GetComponent<CanvasGroup>().interactable = false;
             panelToLoad.GetComponent<CanvasGroup>().alpha = 1;
             panelToLoad.GetComponent<CanvasGroup>().interactable = true;
             panelToLoad.GetComponent<CanvasGroup>().blocksRaycasts = true;
             StartCoroutine(bps.ButtonSpawn());
+            
+
+
+
         }
         else
         {
@@ -260,6 +271,8 @@ public class GameManager : MonoBehaviour
 
 
         }
+        
+       
         
        
     }
@@ -279,6 +292,9 @@ public class GameManager : MonoBehaviour
         canvas.SetActive(true);
         SceneManager.LoadScene(0, LoadSceneMode.Single);
         StartCoroutine(bps.ButtonSpawn());
+        inMenu = true;
+        yield return null;
+        
     }
 
 }
