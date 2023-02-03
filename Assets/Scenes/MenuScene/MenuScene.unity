@@ -2594,9 +2594,9 @@ MonoBehaviour:
   finish: 0
   highScore: 0
   levelindex: 2
-  Targetedloop: 0
+  Targetedloop: 14
   Score: 0
-  Timer: 0
+  Timer: 42
 --- !u!95 &562026433
 Animator:
   serializedVersion: 4
@@ -2976,6 +2976,7 @@ MonoBehaviour:
   scoreTxT: {fileID: 0}
   levelchoosen: 0
   levelUi: 0
+  inMenu: 0
   panelMain: {fileID: 1076730624}
   panelLevel: {fileID: 138032107}
   canvas: {fileID: 497802739}
@@ -4397,9 +4398,9 @@ MonoBehaviour:
   finish: 0
   highScore: 0
   levelindex: 1
-  Targetedloop: 10
+  Targetedloop: 6
   Score: 0
-  Timer: 30
+  Timer: 32
 --- !u!95 &1457319142
 Animator:
   serializedVersion: 4

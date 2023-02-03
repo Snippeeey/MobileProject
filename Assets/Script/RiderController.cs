@@ -13,15 +13,16 @@ public class RiderController : MonoBehaviour
     public Wheels_Controller backWheel, frontWheel;
     private bool backWheelTouch, frontWheeltouch;
 
-
+    public Camera cam;
     private int zminreset, zmaxreset;
     public int score,scoreCount;
-    public float zmin, zmax;
+    public float zmin, zmax, zoompower;
     public float speed;
     public float rotationSpeed;
     public TextMeshProUGUI uiScore; 
     private Rigidbody2D rg2d;
     private Animator myAnimator;
+    private float cambasefov;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +30,8 @@ public class RiderController : MonoBehaviour
         zmaxreset = 5;
         myAnimator = GetComponent<Animator>();
         rg2d = GetComponent<Rigidbody2D>();
+        cam = FindObjectOfType<Camera>();
+        cambasefov = cam.orthographicSize;
     }
 
     // Update is called once per frame
@@ -40,6 +43,7 @@ public class RiderController : MonoBehaviour
     {
         MoveRider();
         CountFlips();
+        Camzoom();
     }
 
 
@@ -107,6 +111,21 @@ public class RiderController : MonoBehaviour
         scoreCount = 0;
         flip = false;
 
+    }
+    void Camzoom()
+    { 
+        RaycastHit2D myray = Physics2D.Raycast(transform.position, -Vector2.up, Mathf.Infinity,3);
+        //Debug.Log(myray.point.y);
+        if (myray.point.y+2.5 <= transform.position.y )
+        {
+            float diff = transform.position.y - myray.point.y;
+            Debug.Log("prout");
+            cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, cambasefov + diff, Time.fixedDeltaTime / zoompower);
+        }
+        else
+        {
+            cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, cambasefov, Time.fixedDeltaTime / zoompower);
+        }
     }
     
 

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8521858974292823532}
   - component: {fileID: 458336139330004402}
   - component: {fileID: 338972736309672939}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SpriteShapeBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -185,3 +185,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   kill: 0
+  animated: 0
+  done: 1
+  timeToStart: 0
+  rotationTime: 0
+  rotationValue: 0

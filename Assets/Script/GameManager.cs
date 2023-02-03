@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
 {
     [Header("Number of star for ths level")]
     public int levelScore;
+    private int loopscore, timerscore;
 
 
     [Header("LevelScore to get 2 Star ")]
@@ -121,40 +122,42 @@ public class GameManager : MonoBehaviour
     {
         if (Finaltimer >= targetedTimer * 0.75 && !timerAdded  )
         {
-            levelScore += 3;
+            timerscore += 3;
             timerAdded = true; 
         }
         else if (Finaltimer >= targetedTimer * 0.5 && Finaltimer < targetedTimer * 0.75 && !timerAdded)
         {
-            levelScore += 2;
+            timerscore += 2;
             timerAdded = true;
         }
         else if (Finaltimer >= targetedTimer * 0.25 && Finaltimer < targetedTimer * 0.5 && !timerAdded)
         {
-            levelScore += 1;
+            timerscore += 1;
             timerAdded = true;
         }
         else 
         {
-            levelScore += 0;
+            timerscore += 0;
         }
 
         if(finalLoopScore >= targetedScore && !loopAdded)
         {
-            levelScore += 2;
+            loopscore += 2;
             loopAdded = true; 
         }
         else if (finalLoopScore >= targetedScore/2 && finalLoopScore < targetedScore && !loopAdded)
         {
-            levelScore += 1;
+            loopscore += 1;
             loopAdded = true;
         }
         else
         {
-            levelScore += 0;
+            loopscore += 0;
         }
 
-
+        levelScore = loopscore + timerscore;
+        loopscore = 0;
+        timerscore = 0;
 
         if (buttonLiedToLevel.highScore < levelScore )
         {
@@ -201,30 +204,46 @@ public class GameManager : MonoBehaviour
         {
             timerTxt.color = Color.yellow;
             timerTxt.outlineColor = Color.yellow;
+            
         }
         else if (timeLeft >= targetedTimer * 0.5 && timeLeft < targetedTimer * 0.75 )
         {
             timerTxt.color = Color.white;
             timerTxt.outlineColor = Color.white;
+            Image star = timerTxt.gameObject.transform.GetChild(1).GetChild(2).GetComponent<Image>();
+            star.color = Color.red;
         }
         else if (timeLeft >= targetedTimer * 0.25 && timeLeft < targetedTimer * 0.5 )
         {
             timerTxt.color = Color.gray;
             timerTxt.outlineColor = Color.white;
+            Image star = timerTxt.gameObject.transform.GetChild(1).GetChild(1).GetComponent<Image>();
+            star.color = Color.red;
         }
         else
         {
-
+            Image star = timerTxt.gameObject.transform.GetChild(1).GetChild(0).GetComponent<Image>();
+            star.color = Color.red;
         }
+
+
+
         if (loop >= targetedScore )
         {
+
             scoreTxT.color = Color.yellow;
             scoreTxT.outlineColor = Color.yellow;
+            Image star = scoreTxT.gameObject.transform.GetChild(1).GetChild(1).GetComponent<Image>();
+            star.color = Color.white;
+
         }
         else if (loop >= targetedScore / 2 && loop < targetedScore )
         {
             scoreTxT.color = Color.white;
             scoreTxT.outlineColor = Color.white;
+            
+            Image star = scoreTxT.gameObject.transform.GetChild(1).GetChild(0).GetComponent<Image>();
+            star.color = Color.white;
         }
         else 
         {

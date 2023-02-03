@@ -68,7 +68,7 @@ public class ButtonController : MonoBehaviour
             }
             Star[i-1].SetActive(true);
         }
-        yield return null;
+        //yield return null;
     }
 
 }
