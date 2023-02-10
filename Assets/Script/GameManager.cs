@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
 
     public int levelchoosen;
     public bool levelUi , inMenu ;
-    public GameObject panelMain, panelLevel, canvas, buttonGroup;
+    public GameObject panelMain, panelLevel, canvas, buttonGroup , buttonLeave;
 
     public ButtonController buttonLiedToLevel;
     public ButtonSpawnScript bps;
@@ -58,7 +58,10 @@ public class GameManager : MonoBehaviour
     private void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
-      
+        
+
+
+
     }
     private void OnDisable()
     {
@@ -190,12 +193,18 @@ public class GameManager : MonoBehaviour
 
 
     }
+    public void BackToLevel()
+    {
+
+    }
     public void OnSceneLoaded(Scene scene, LoadSceneMode loadMode)
     {
 
         scoreTxT = GameObject.FindGameObjectWithTag("ScoreTag").GetComponent<TextMeshProUGUI>();
         timerTxt = GameObject.FindGameObjectWithTag("TimerTag").GetComponent<TextMeshProUGUI>();
+        buttonLeave = GameObject.FindGameObjectWithTag("LeaveTag");
         TimerOn = true;
+        //buttonLeave.GetComponent<Button>().onClick;
     }
     private void Uicolorcontrol()
     {

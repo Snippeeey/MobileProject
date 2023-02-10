@@ -14,6 +14,7 @@ TagManager:
   - UI
   - TimerTag
   - ScoreTag
+  - LeaveTag
   layers:
   - Default
   - TransparentFX

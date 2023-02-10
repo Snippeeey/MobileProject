@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class killZone : MonoBehaviour
 {
+    public bool saw;
     // Start is called before the first frame update
     void Start()
     {
@@ -13,6 +14,10 @@ public class killZone : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(new Vector3(0, 0, 4f));
+        if(saw)
+        {
+            transform.Rotate(new Vector3(0, 0, 4f));
+        }
+       
     }
 }
