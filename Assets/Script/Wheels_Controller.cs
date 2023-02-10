@@ -49,13 +49,14 @@ public class Wheels_Controller : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<FinishLine>())
         {
-            if (collision.gameObject.GetComponent<killZone>())
-            {
-                rd.Death();
-            }
+            
             GameManager.Instance.temporaryScores = rd.score;
             GameManager.Instance.Finish();
             Debug.Log("leScoremarche");
+        }
+        if (collision.gameObject.GetComponent<killZone>())
+        {
+            rd.Death();
         }
     }
 }
