@@ -626,6 +626,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13da47b6694e6464d9c93413ab329b4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &297166135
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 297166137}
+  - component: {fileID: 297166136}
+  m_Layer: 0
+  m_Name: Script
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &297166136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 297166135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11af85e48dbd8474580b863c18a8bef9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &297166137
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 297166135}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 40.889427, y: -0.9189861, z: -5.1018085}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &380446250
 GameObject:
   m_ObjectHideFlags: 0
@@ -5125,7 +5169,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 13
+  orthographic size: 15
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -5490,12 +5534,12 @@ MonoBehaviour:
   flip: 0
   backWheel: {fileID: 1841802859}
   frontWheel: {fileID: 1466196054}
-  cam: {fileID: 0}
+  cam: {fileID: 519420031}
   score: 0
   scoreCount: 0
   zmin: 320
   zmax: 360
-  zoompower: 5
+  zoompower: 0
   speed: 45
   rotationSpeed: 3
   uiScore: {fileID: 380446252}
@@ -5653,13 +5697,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 297166136}
+        m_TargetAssemblyTypeName: ButtonLeave, Assembly-CSharp
+        m_MethodName: Leave
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -6128,7 +6172,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh55524
+  m_Name: pb_Mesh51506
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2

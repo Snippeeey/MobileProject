@@ -204,7 +204,7 @@ public class GameManager : MonoBehaviour
         timerTxt = GameObject.FindGameObjectWithTag("TimerTag").GetComponent<TextMeshProUGUI>();
         buttonLeave = GameObject.FindGameObjectWithTag("LeaveTag");
         TimerOn = true;
-        //buttonLeave.GetComponent<Button>().onClick;
+        //buttonLeave.GetComponent<Button>(). = SceneManager.LoadScene(0);
     }
     private void Uicolorcontrol()
     {
