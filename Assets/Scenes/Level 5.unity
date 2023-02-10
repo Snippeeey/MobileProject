@@ -821,6 +821,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: KillZone
       objectReference: {fileID: 0}
+    - target: {fileID: 3596536845715541408, guid: 137e606cd1c97ae4da9482083d774453, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9027846363245899985, guid: 137e606cd1c97ae4da9482083d774453, type: 3}
       propertyPath: m_RootOrder
       value: 1

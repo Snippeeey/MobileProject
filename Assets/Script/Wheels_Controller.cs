@@ -19,6 +19,7 @@ public class Wheels_Controller : MonoBehaviour
     {
 
     }
+   
     private void OnCollisionEnter2D(Collision2D collision)
     {
         isGrounded = true;
@@ -48,6 +49,10 @@ public class Wheels_Controller : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<FinishLine>())
         {
+            if (collision.gameObject.GetComponent<killZone>())
+            {
+                rd.Death();
+            }
             GameManager.Instance.temporaryScores = rd.score;
             GameManager.Instance.Finish();
             Debug.Log("leScoremarche");
