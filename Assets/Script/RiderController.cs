@@ -90,14 +90,14 @@ public class RiderController : MonoBehaviour
     }
     private void CountFlips()
     {
-        if (!isGrouded &&  !flip && (transform.rotation.eulerAngles.z > zmin) && (transform.rotation.eulerAngles.z < zmax)  )
+        if (!isGrouded &&  !flip && (transform.rotation.eulerAngles.z > zmin) && (transform.rotation.eulerAngles.z < zmax) && backWheel.isGrounded == false && frontWheel.isGrounded == false)
         {
           
             scoreCount++;
             flip = true; 
             
         }
-        else if ( (transform.rotation.eulerAngles.z > zminreset) && (transform.rotation.eulerAngles.z < zmaxreset)  )
+        else if ( (transform.rotation.eulerAngles.z > zminreset) && (transform.rotation.eulerAngles.z < zmaxreset))
         {
             flip = false; 
         }
@@ -105,14 +105,13 @@ public class RiderController : MonoBehaviour
     }
     IEnumerator PointFlipCalculator()
     {
-        yield return new WaitForSeconds(0.05f);
-        if(backWheel.isGrounded && frontWheel.isGrounded &&  scoreCount>0 )
+        yield return new WaitForSeconds(0.15f);
+        if(backWheel.isGrounded && frontWheel.isGrounded &&  scoreCount > 0  )
         {
             scoreCount *= 2;
-            GameObject Fx = Instantiate(fxBonus, frontWheel.transform.position, frontWheel.transform.rotation);
-            Fx.transform.SetParent(frontWheel.transform);
-            GameObject fx2 = Instantiate(fxBonus, backWheel.transform.position, backWheel.transform.rotation);
-            fx2.transform.SetParent(backWheel.transform);
+           Instantiate(fxBonus, frontWheel.transform.position, frontWheel.transform.rotation, frontWheel.transform);
+           Instantiate(fxBonus, backWheel.transform.position, backWheel.transform.rotation, backWheel.transform);
+         
         }
         new WaitForSeconds(0.8f);
         score += scoreCount;
