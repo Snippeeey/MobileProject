@@ -5497,7 +5497,7 @@ GameObject:
   - component: {fileID: 687199612}
   - component: {fileID: 687199613}
   - component: {fileID: 687199614}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: -Player-
   m_TagString: PlayerBike
   m_Icon: {fileID: 0}
@@ -5611,6 +5611,7 @@ MonoBehaviour:
   isGrouded: 0
   alive: 0
   flip: 0
+  fxBonus: {fileID: 4893337264997384203, guid: a702c573a9fa5fc40b27f7819398a551, type: 3}
   backWheel: {fileID: 1841802859}
   frontWheel: {fileID: 1466196054}
   cam: {fileID: 519420031}
@@ -5618,7 +5619,7 @@ MonoBehaviour:
   scoreCount: 0
   zmin: 320
   zmax: 360
-  zoompower: 0
+  zoompower: 1.5
   speed: 45
   rotationSpeed: 3
   uiScore: {fileID: 380446252}
@@ -7078,7 +7079,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh55524
+  m_Name: pb_Mesh99288
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2

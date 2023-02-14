@@ -10,6 +10,7 @@ public class RiderController : MonoBehaviour
     public bool isGrouded;
     [HideInInspector]
     public bool alive,flip;
+    public GameObject fxBonus;
     public Wheels_Controller backWheel, frontWheel;
     private bool backWheelTouch, frontWheeltouch;
 
@@ -23,6 +24,11 @@ public class RiderController : MonoBehaviour
     private Rigidbody2D rg2d;
     private Animator myAnimator;
     private float cambasefov;
+    private void Awake()
+    {
+        cam = Camera.main;
+        cambasefov = cam.orthographicSize;
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -30,8 +36,7 @@ public class RiderController : MonoBehaviour
         zmaxreset = 5;
         myAnimator = GetComponent<Animator>();
         rg2d = GetComponent<Rigidbody2D>();
-        cam = FindObjectOfType<Camera>();
-        cambasefov = cam.orthographicSize;
+       
     }
 
     // Update is called once per frame
@@ -92,7 +97,7 @@ public class RiderController : MonoBehaviour
             flip = true; 
             
         }
-        if ( (transform.rotation.eulerAngles.z > zminreset) && (transform.rotation.eulerAngles.z < zmaxreset))
+        else if ( (transform.rotation.eulerAngles.z > zminreset) && (transform.rotation.eulerAngles.z < zmaxreset)  )
         {
             flip = false; 
         }
@@ -101,9 +106,13 @@ public class RiderController : MonoBehaviour
     IEnumerator PointFlipCalculator()
     {
         yield return new WaitForSeconds(0.05f);
-        if(backWheel.isGrounded && frontWheel.isGrounded )
+        if(backWheel.isGrounded && frontWheel.isGrounded &&  scoreCount>0 )
         {
-            scoreCount *= 2; 
+            scoreCount *= 2;
+            GameObject Fx = Instantiate(fxBonus, frontWheel.transform.position, frontWheel.transform.rotation);
+            Fx.transform.SetParent(frontWheel.transform);
+            GameObject fx2 = Instantiate(fxBonus, backWheel.transform.position, backWheel.transform.rotation);
+            fx2.transform.SetParent(backWheel.transform);
         }
         new WaitForSeconds(0.8f);
         score += scoreCount;
@@ -113,13 +122,17 @@ public class RiderController : MonoBehaviour
 
     }
     void Camzoom()
-    { 
+    {
+       
         RaycastHit2D myray = Physics2D.Raycast(transform.position, -Vector2.up, Mathf.Infinity,3);
+        Debug.Log(myray.point.y + 0.5 <= transform.position.y);
+
         //Debug.Log(myray.point.y);
-        if (myray.point.y+2.5 <= transform.position.y )
+        if (myray.point.y+0.5 <= transform.position.y )
         {
+            
             float diff = transform.position.y - myray.point.y;
-            Debug.Log("prout");
+            Debug.Log("prout"+ cam.orthographicSize);
             cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, cambasefov + diff, Time.fixedDeltaTime / zoompower);
         }
         else
@@ -167,11 +180,15 @@ public class RiderController : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-       
+        if (collision.gameObject.GetComponent<killZone>())
+        {
+            Death();
+        }
     }
     IEnumerator WaitDeath()
     {
         yield return new WaitForSeconds(1f);
+        
         GameManager.Instance.RestartAfterDeath();
     }
 

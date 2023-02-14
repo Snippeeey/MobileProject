@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 9027846363245899985}
   - component: {fileID: 8357533565973749681}
   - component: {fileID: 3596536845715541408}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: KillZone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2dd7532dff49b34393950e17a76ff85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  saw: 0
 --- !u!61 &3596536845715541408
 BoxCollider2D:
   m_ObjectHideFlags: 0
