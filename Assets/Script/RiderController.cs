@@ -7,7 +7,7 @@ public class RiderController : MonoBehaviour
 {
     [HideInInspector]
     public bool moved;
-    public bool isGrouded;
+    public bool isGrouded,isgrounded2;
     [HideInInspector]
     public bool alive,flip;
     public GameObject fxBonus;
@@ -24,6 +24,7 @@ public class RiderController : MonoBehaviour
     private Rigidbody2D rg2d;
     private Animator myAnimator;
     private float cambasefov;
+    public GameObject TextScore,TextSpawnPoint;
     private void Awake()
     {
         cam = Camera.main;
@@ -90,7 +91,7 @@ public class RiderController : MonoBehaviour
     }
     private void CountFlips()
     {
-        if (!isGrouded &&  !flip && (transform.rotation.eulerAngles.z > zmin) && (transform.rotation.eulerAngles.z < zmax) && backWheel.isGrounded == false && frontWheel.isGrounded == false)
+        if (!isGrouded &&  !flip && (transform.rotation.eulerAngles.z > zmin) && (transform.rotation.eulerAngles.z < zmax) && backWheel.isGrounded == false && frontWheel.isGrounded == false )
         {
           
             scoreCount++;
@@ -106,18 +107,28 @@ public class RiderController : MonoBehaviour
     IEnumerator PointFlipCalculator()
     {
         yield return new WaitForSeconds(0.15f);
-        if(backWheel.isGrounded && frontWheel.isGrounded &&  scoreCount > 0  )
+        if(backWheel.isGrounded && frontWheel.isGrounded &&  scoreCount >= 1   )
         {
-            scoreCount *= 2;
+           scoreCount *= 2;
            Instantiate(fxBonus, frontWheel.transform.position, frontWheel.transform.rotation, frontWheel.transform);
            Instantiate(fxBonus, backWheel.transform.position, backWheel.transform.rotation, backWheel.transform);
          
         }
+        if(scoreCount>=1)
+        {
+            GameObject gotext = Instantiate(TextScore, TextSpawnPoint.transform.position,TextScore.transform.rotation );
+            gotext.GetComponent<TextMesh>().text = "+ " + scoreCount.ToString();
+            //Camera.main.GetComponent<CamShake>().ShakeCamera();
+        }
+
+       
         new WaitForSeconds(0.8f);
         score += scoreCount;
+       
         uiScore.text = ""  + score.ToString();
         scoreCount = 0;
         flip = false;
+       
 
     }
     void Camzoom()
@@ -157,9 +168,11 @@ public class RiderController : MonoBehaviour
 
 
         isGrouded = true;
-        if(backWheel.isGrounded && frontWheel.isGrounded == false || backWheel.isGrounded == false && frontWheel.isGrounded )
+        isgrounded2 = true;
+        if (backWheel.isGrounded && frontWheel.isGrounded == false || backWheel.isGrounded == false && frontWheel.isGrounded && !isGrouded )
         {
             StartCoroutine(PointFlipCalculator());
+           
         }
        
     }
@@ -171,10 +184,12 @@ public class RiderController : MonoBehaviour
     public void WheelsStayOnGround()
     {
         isGrouded = true;
+        isgrounded2 = true;
     }
     public void WheelsLeaveTheGround()
     {
-        isGrouded = false; 
+        isGrouded = false;
+        StartCoroutine(WaitGround());
         
     }
     private void OnCollisionEnter2D(Collision2D collision)
@@ -189,6 +204,18 @@ public class RiderController : MonoBehaviour
         yield return new WaitForSeconds(1f);
         
         GameManager.Instance.RestartAfterDeath();
+    }
+    IEnumerator WaitGround()
+    {
+        yield return new WaitForSeconds(0.04f);
+        if(backWheel.isGrounded && frontWheel.isGrounded == false || backWheel.isGrounded == false && frontWheel.isGrounded)
+        {
+            isgrounded2 = false;
+        }
+            
+
+
+
     }
 
 }
